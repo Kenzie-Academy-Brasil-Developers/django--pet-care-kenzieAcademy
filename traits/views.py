@@ -8,4 +8,5 @@ class TraitView(APIView):
         return Response(new_trait.to_dict(), status.HTTP_201_CREATED)
 
     def get(self, _: Request) -> Response:
-        return Response(Trait.to_list_dict(), status.HTTP_200_OK)
+        trait_list = Trait.to_list_dict()
+        return Response(trait_list, status.HTTP_200_OK)

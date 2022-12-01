@@ -1,11 +1,22 @@
 from rest_framework.views import APIView, Request, Response, status
 from .models import Group
+from .serializers import GroupSerializer
 
 
 class GroupView(APIView):
     def post(self, request: Request) -> Response:
-        new_group: Group = Group.objects.create(**request.data)
-        return Response(new_group.to_dict(), status.HTTP_201_CREATED)
+        serializer = GroupSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+        new_group = Group.objects.create(**serializer.validated_data)
+        serializer = GroupSerializer(new_group)
+
+        return Response(serializer.data, status.HTTP_200_OK)
 
     def get(self, _: Request) -> Response:
-        return Response(Group.to_list_dict(), status.HTTP_200_OK)
+        groups = Group.objects.all()
+        serializer = GroupSerializer(groups, many=True)
+
+        return Response(serializer.data, status.HTTP_200_OK)
