@@ -1,11 +1,22 @@
 from rest_framework.views import APIView, Request, Response, status
 from .models import Pet
+from .serializers import PetSerializer
 
 
 class PetView(APIView):
     def post(self, request: Request) -> Response:
-        new_pet: Pet = Pet.objects.create(**request.data)
-        return Response(new_pet.to_dict(), status.HTTP_201_CREATED)
+        serializer = PetSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+        new_pet = Pet.objects.create(**serializer.validated_data)
+        serializer = PetSerializer(new_pet)
+
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
     def get(self, _: Request) -> Response:
-        return Response(Pet.to_list_dict(), status.HTTP_200_OK)
+        pets = Pet.objects.all()
+        serializer = PetSerializer(pets, many=True)
+
+        return Response(serializer.data, status.HTTP_200_OK)

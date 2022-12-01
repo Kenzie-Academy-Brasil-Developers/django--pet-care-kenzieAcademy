@@ -15,10 +15,7 @@ class Pet(models.Model):
     sex = models.CharField(max_length=20, default=Sex.DEFAULT, choices=Sex.choices)
 
     group = models.ForeignKey(
-        "groups.Group",
-        on_delete=models.CASCADE,
-        related_name="animals",
-        null=True
+        "groups.Group", on_delete=models.CASCADE, related_name="animals", null=True
     )
     traits = models.ManyToManyField("traits.Trait", related_name="pets")
 
