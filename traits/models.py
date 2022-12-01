@@ -2,7 +2,6 @@ from django.db import models
 from django.forms.models import model_to_dict
 
 
-# Create your models here.
 class Trait(models.Model):
     name = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)

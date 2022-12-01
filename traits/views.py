@@ -1,12 +1,22 @@
 from rest_framework.views import APIView, Request, Response, status
 from .models import Trait
+from .serializers import TraitSerializer
 
 
 class TraitView(APIView):
     def post(self, request: Request) -> Response:
-        new_trait: Trait = Trait.objects.create(**request.data)
-        return Response(new_trait.to_dict(), status.HTTP_201_CREATED)
+        serializer = TraitSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+        new_trait = Trait.objects.create(**serializer.validated_data)
+        serializer = TraitSerializer(new_trait)
+
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
     def get(self, _: Request) -> Response:
-        trait_list = Trait.to_list_dict()
-        return Response(trait_list, status.HTTP_200_OK)
+        traits = Trait.objects.all()
+        serializer = TraitSerializer(traits, many=True)
+
+        return Response(serializer.data, status.HTTP_200_OK)

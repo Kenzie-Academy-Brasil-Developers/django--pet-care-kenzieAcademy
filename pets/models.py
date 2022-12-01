@@ -21,20 +21,3 @@ class Pet(models.Model):
 
     def __repr__(self) -> str:
         return f"<Pet {self.id} - {self.name}>"
-
-    def to_dict(self) -> dict:
-        return model_to_dict(self)
-
-    @classmethod
-    def to_list_dict(cls) -> list[dict]:
-        pets = cls.objects.all()
-
-        pet_list = []
-        for i, pet in enumerate(pets):
-            if i == 0:
-                print(model_to_dict(pet).keys)
-            pet = model_to_dict(pet)
-            pet["traits"] = [model_to_dict(trait) for trait in pet["traits"]]
-
-            pet_list.append(pet)
-        return pet_list
