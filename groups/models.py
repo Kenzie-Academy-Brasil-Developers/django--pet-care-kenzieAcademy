@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import model_to_dict
 import uuid
 
 
@@ -10,3 +11,12 @@ class Group(models.Model):
 
     def __repr__(self) -> str:
         return f"<Group {self.id} - {self.scientific_name}>"
+
+    def to_dict(self) -> dict:
+        return model_to_dict(self)
+
+    @classmethod
+    def to_list_dict(cls) -> list[dict]:
+        groups = cls.objects.all()
+        group_list = [model_to_dict(group) for group in groups]
+        return group_list

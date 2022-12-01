@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import model_to_dict
 import uuid
 
 
@@ -19,3 +20,12 @@ class Pet(models.Model):
 
     def __repr__(self) -> str:
         return f"<Pet {self.id} - {self.name}>"
+
+    def to_dict(self) -> dict:
+        return model_to_dict(self)
+
+    @classmethod
+    def to_list_dict(cls) -> list[dict]:
+        pets = cls.objects.all()
+        pet_list = [model_to_dict(pet) for pet in pets]
+        return pet_list

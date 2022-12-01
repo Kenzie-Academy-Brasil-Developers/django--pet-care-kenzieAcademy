@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import model_to_dict
 import uuid
 
 
@@ -12,3 +13,12 @@ class Trait(models.Model):
 
     def __repr__(self) -> str:
         return f"<Trait {self.id} - {self.name}>"
+
+    def to_dict(self) -> dict:
+        ...
+
+    @classmethod
+    def to_list_dict(cls) -> list[dict]:
+        traits = cls.objects.all()
+        trait_list = [model_to_dict(trait) for trait in traits]
+        return trait_list
