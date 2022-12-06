@@ -3,6 +3,36 @@
 Nesse projeto foi criada uma aplicação simples para ajudar donos de PetShop a guardar dados dos pets de seus clientes. Nele, foram utilizados conceitos aprendidos nas aulas do curso de desenvolvimento full-stack da Kenzie Academy Brasil, mais especificamente referentes ao módulo 5, sprint 3 (dos dias 28/11 a 02/12) onde a temática das demos se baseiam em conceitos como Relacionamentos, Models, Views e Serializers do framework Django.
 A identificação dos itens foram trabalhadas utilizando-se de id's inteiros sequenciais referenciando as suas devidas chaves primárias.
 ___
+## Configurar o ambiente para rodar a aplicação localmente
+
+Para poder rodar esta aplicação em sua máquina da melhor maneira possível, abra sua shell (se for um usuário do windows, opte pelo PowerShell) e execute os seguintes comandos:
+
+1. Primeiramente, crie seu ambiente virtual:
+	```bash
+	python -m venv venv
+	```
+
+2. Ative seu venv:
+	```bash
+	# linux:
+	source venv/bin/activate
+
+	# windows:
+	.\venv\Scripts\activate
+	```
+
+3. Dentro de seu ambiente virtual, instale as bibliotecas necessárias para o bom funcionamento da aplicação através do comando:
+   ```bash
+   pip install -r .\requirements.txt
+   ```
+
+4. Finalmente, rode o servidor local:
+   ```bash
+   python .\manage.py runserver
+   ```
+
+Pronto! Sua nova API esta ativa e pronta para uso. Divirta-se!
+
 ## **Diagrama de Entidades e Relacionamentos em que o projeto foi baseado**
 </br>
 
