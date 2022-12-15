@@ -32,6 +32,9 @@ Para poder rodar esta aplicação em sua máquina da melhor maneira possível, a
    ```
 
 Pronto! Sua nova API esta ativa e pronta para uso. Divirta-se!
+___
+</br>
+</br>
 
 ## **Diagrama de Entidades e Relacionamentos em que o projeto foi baseado**
 </br>

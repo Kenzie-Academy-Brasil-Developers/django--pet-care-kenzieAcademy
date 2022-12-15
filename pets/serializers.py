@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.db import models
 
 from .models import Sex, Pet
 from groups.serializers import GroupSerializer
@@ -48,10 +47,7 @@ class PetSerializer(serializers.Serializer):
             group.save()
 
         if traits_dict:
-            instance.traits.clear()
-            for trait in traits_dict:
-                new_trait, _ = Trait.objects.get_or_create(**trait)
-                instance.traits.add(new_trait)
+            instance.traits.set(*traits_dict)
 
         for key, value in validated_data.items():
             setattr(instance, key, value)
