@@ -314,8 +314,8 @@ Rota responsável pela deleção de um pet em específico. A deleção feita é 
 </br>
 
 #### **Problemas ou dúvidas referentes ao desenvolvimento da aplicação?**
-##### CONTATOS:
-<div><br>
+<div style="text-align: center"><br>
+	<h3 style="font-weight: 700">Contatos</h3><br>
     <a href="https://kenzieacademybrasil.slack.com/archives/D036X87KUCV">
         <img alt="Francisco-Slack" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" />
     </a>
@@ -325,5 +325,6 @@ Rota responsável pela deleção de um pet em específico. A deleção feita é 
     <a href="https://www.linkedin.com/in/franciscostenico/">
         <img alt="Francisco-LinkedIn" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
     </a>
+	<p style="font-style: italic; font-size: .75rem">Francisco Correr Stenico - Desenvolvimento Full-Stack</p>
 </div>
 
